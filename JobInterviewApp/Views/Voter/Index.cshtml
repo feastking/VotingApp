@@ -1,0 +1,37 @@
+﻿@model IEnumerable<JobInterviewApp.Models.Voter>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <table class="table">
+        <tr>
+            <th colspan="2">
+                <div>Voters<a href="@Url.Action("Create")" class="glyphicon glyphicon-plus-sign" style="float: right; font-size: large;"></a></div>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hasVoted)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hasVoted)
+        </td>
+        @*<td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>*@
+    </tr>
+        }
+
+    </table>

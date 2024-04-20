@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Voting page";
+}
+
+<html>
+    <body>
+        <h1 class="display-4">Voting app</h1>
+
+        <div class="two-col">
+            <div class="col1">
+                <div>@Html.Action("Index", "Voter")</div>
+            </div>
+
+            <div class="col2">
+                <div>@Html.Action("Index", "Candidate")</div>
+            </div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @model JobInterviewApp.ViewModel.AvailableVoteOptions
+
+            <div class="text-left">
+                <hr />
+                <h1 class="display-4">Vote!</h1>
+
+                @Html.DropDownListFor(m => m.voterID, (SelectList)ViewBag.AvailableVoters, new { @class = "voteOptions voter-placeholder" })
+                @Html.DropDownListFor(m => m.candidateID, (SelectList)ViewBag.AvailableCandidates, new { @class = "voteOptions candidate-placeholder" })
+
+                <button type="submit" id="btn_click" class="voteOptions">Submit</button>
+            </div>
+        }
+
+        <script>
+            $(".voter-placeholder").prepend("<option value = '' selected disabled > I am</option > ");
+            $(".candidate-placeholder").prepend("<option value = '' hidden selected disabled > I vote for</option > ");
+        </script>
+
+    </body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
